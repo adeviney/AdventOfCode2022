@@ -11,6 +11,8 @@ import (
 
 type MaxThreeItemsHeap []int
 
+// MaxThreeItemsHeap is MIN heap.
+// It stores the maximum three items of any list, sorted from smallest to largest
 func (h MaxThreeItemsHeap) Len() int           { return len(h) }
 func (h MaxThreeItemsHeap) Less(i, j int) bool { return h[i] < h[j] }
 func (h MaxThreeItemsHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
@@ -21,7 +23,7 @@ func (h *MaxThreeItemsHeap) Push(x any) {
 	*h = append(*h, x.(int))
 
 	// If the length of the heap is greater than 3,
-	// remove the item with the
+	// remove the item with the lowest priority
 	if h.Len() > 3 {
 		heap.Pop(h)
 	}
